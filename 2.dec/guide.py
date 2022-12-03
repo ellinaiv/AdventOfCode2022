@@ -26,39 +26,48 @@ def applyStrategy(filename):
     for play in rounds:
         
         play = play.strip().split(" ")
-        
+        opponent = play[0]
+        me = play[1]
+
         #draw
-        if play[1] == draw:
-            if play[0] == rock:
-                myScores += rockScores + drawScores
+        if me == draw:
+            myScores += drawScores
 
-            if play[0] == paper:
-                myScores += paperScores + drawScores
+            if opponent == rock:
+                myScores += rockScores
 
-            if play[0] == scissors:
-                myScores += scissorsScores + drawScores
+            if opponent == paper:
+                myScores += paperScores
+
+            if opponent == scissors:
+                myScores += scissorsScores
+            continue
 
         #win
-        if play[1] == win:
-            if play[0] ==  rock:
-                myScores += paperScores + winScores
+        if me == win:
+            myScores += winScores
 
-            if play[0] == paper:
-                myScores += scissorsScores + winScores
+            if opponent ==  rock:
+                myScores += paperScores
 
-            if play[0] == scissors:
-                myScores += rockScores + winScores
-
-        #loss
-        if play[1] == loos:
-            if play[0] == rock:
+            if opponent == paper:
                 myScores += scissorsScores
 
-            if play[0] == paper:
+            if opponent == scissors:
+                myScores += rockScores
+            continue
+        
+        #loss
+        if me == loos:
+            if opponent == rock:
+                myScores += scissorsScores
+
+            if opponent == paper:
                 myScores += rockScores
 
-            if play[0] == scissors:
-                myScores += rockScores
+            if opponent == scissors:
+                myScores += paperScores
+
     print(myScores)
 
 
