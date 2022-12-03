@@ -12,7 +12,6 @@ def findPriorities(filename):
         rucksack2 = set(data[i+1].strip())
         rucksack3 = set(data[i+2].strip())
         intersection = rucksack1 & rucksack2 & rucksack3
-#        print(intersection)
         sumPriorities += alphaCodes.index(intersection.pop()) + 1
         i = i + 3
     print(sumPriorities)

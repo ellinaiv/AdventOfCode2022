@@ -3,9 +3,13 @@
 
 def applyStrategy(filename):
 
-    rock = ["A", "X"]
-    paper = ["B", "Y"]
-    scissors = ["C", "Z"]
+    rock = "A"
+    paper = "B"
+    scissors = "C"
+
+    loos = "X"
+    draw = "Y"
+    win = "Z"
 
     #scores
     myScores = 0
@@ -18,39 +22,43 @@ def applyStrategy(filename):
     
     rounds = open(filename, "r")
 
+    
     for play in rounds:
         
-        play = play[0:3]
-        play = play.split(" ")
+        play = play.strip().split(" ")
         
         #draw
-        if play[0] in rock and play[1] in rock:
-            myScores += drawScores
+        if play[1] == draw:
+            if play[0] == rock:
+                myScores += rockScores + drawScores
 
-        if play[0] in paper and play[1] in paper:
-            myScores +=	drawScores
+            if play[0] == paper:
+                myScores += paperScores + drawScores
 
-        if play[0] in scissors and play[1] in scissors:
-            myScores +=	drawScores
+            if play[0] == scissors:
+                myScores += scissorsScores + drawScores
 
         #win
-        if play[0] in rock and play[1] in paper:
-            myScores +=	winScores
+        if play[1] == win:
+            if play[0] ==  rock:
+                myScores += paperScores + winScores
 
-        if play[0] in paper and play[1] in scissors:
-            myScores +=	winScores
+            if play[0] == paper:
+                myScores += scissorsScores + winScores
 
-        if play[0] in scissors and play[1] in rock:
-            myScores +=	winScores
+            if play[0] == scissors:
+                myScores += rockScores + winScores
 
         #loss
-        if play[1] in rock:
-            myScores +=	rockScores
-        if play[1] in paper:
-            myScores += paperScores
-        if play[1] in scissors:
-            myScores += scissorsScores
+        if play[1] == loos:
+            if play[0] == rock:
+                myScores += scissorsScores
 
+            if play[0] == paper:
+                myScores += rockScores
+
+            if play[0] == scissors:
+                myScores += rockScores
     print(myScores)
 
 
